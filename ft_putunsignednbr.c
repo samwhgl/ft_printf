@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_putunsignednbr.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 11:03:20 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 15:49:57 by shaegels         ###   ########.fr       */
+/*   Created: 2025/10/27 15:49:09 by shaegels          #+#    #+#             */
+/*   Updated: 2025/10/27 15:49:48 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#include "printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdarg.h>
+int	ft_putunsignednbr(int n)
+{
+	char	nbr;
+	int		count;
 
-void	ft_putchar_fd(char c, int fd);
-int	ft_putstr_fd(char *s, int fd);
-size_t	ft_strlen(const char *str);
-int	ft_print_memory(const void *ptr);
-int	ft_putnbr(int n);
-int	ft_putunsignednbr(int n);
-
-#endif
+	nbr = '0';
+	if (n > 9)
+	{
+		count += ft_putnbr((n / 10));
+	}
+	n = n % 10;
+	nbr += n;
+	write (1, &nbr, 1);
+	count++;
+	return (count);
+}
