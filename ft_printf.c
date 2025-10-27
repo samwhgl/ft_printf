@@ -6,7 +6,7 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:43:00 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 17:25:29 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/27 18:31:45 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_printf(const char * format, ...)
 	va_start(args, format);
 	count = 0;
 	i = 0;
+	if (!format)
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] != '%')
@@ -53,7 +55,7 @@ int	ft_printf(const char * format, ...)
 				count += ft_print_memory2(va_arg(args, void *));
 				i++;
 			}
-			else if (format[i + 1] == 'd')
+			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
 			{
 				count += ft_putnbr(va_arg(args, int));
 				i++;
@@ -84,4 +86,11 @@ int	ft_printf(const char * format, ...)
 	}
 	va_end(args);
 	return (count);
+}
+
+#include <stdio.h>
+int main(){
+	ft_printf("%d\n",ft_printf("%:\n", "hello"));
+	printf("%d\n",printf("%:\n", "hello"));
+	return 0;
 }
