@@ -6,7 +6,7 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:03:20 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 15:49:57 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/27 16:41:21 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
 int	ft_print_memory(const void *ptr);
 int	ft_putnbr(int n);
-int	ft_putunsignednbr(int n);
+int	ft_putunsignednbr(unsigned int n);
+int	ft_puthexamin(int a);
+int	ft_puthexamaj(int a);
 
 #endif

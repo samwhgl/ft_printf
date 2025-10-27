@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsignednbr.c                                :+:      :+:    :+:   */
+/*   ft_puthexamin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 15:49:09 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 16:20:51 by shaegels         ###   ########.fr       */
+/*   Created: 2025/10/27 16:28:30 by shaegels          #+#    #+#             */
+/*   Updated: 2025/10/27 16:38:32 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_putunsignednbr(unsigned int n)
+int	ft_puthexamin(int a)
 {
-	char	nbr;
+	char	*base;
 	int		count;
-	long int	nb;
 
 	count = 0;
-	nb = (long int) n;
-	nbr = '0';
-	if (nb > 9)
-	{
-		count += ft_putunsignednbr((nb / 10));
-	}
-	nb = nb % 10;
-	nbr += nb;
-	write (1, &nbr, 1);
+	base = "0123456789abcdef";
+	if (a >= 16)
+		count += ft_puthexamin(a / 16);
+	ft_putchar_fd(base[a % 16], 1);
 	count++;
 	return (count);
 }
