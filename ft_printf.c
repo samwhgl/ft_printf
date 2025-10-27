@@ -6,7 +6,7 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:43:00 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 16:45:22 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:25:29 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,17 @@ int	ft_printf(const char * format, ...)
 			else if (format[i + 1] == 's')
 			{
 				str = va_arg(args, char *);
+				if (!str)
+				{
+					write(1, "(null)", 6);
+					count += 6;
+				}
 				count += ft_putstr_fd(str, 1);
 				i++;
 			}
 			else if (format[i + 1] == 'p')
 			{
-				write(1, "0x", 2);
-				count += ft_print_memory(va_arg(args, void *)) + 2;
+				count += ft_print_memory2(va_arg(args, void *));
 				i++;
 			}
 			else if (format[i + 1] == 'd')
@@ -80,14 +84,4 @@ int	ft_printf(const char * format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-#include <stdio.h>
-int main(){
-	int i = -386;
-	printf("%d\n", ft_printf("%s hello pointer %p %s worl%cd\n", "coucou", &i, "my", 'n'));
-	printf("%d\n", printf("%s hello pointer %p %s worl%cd\n", "coucou", &i, "my", 'n'));
-	printf("%d\n", ft_printf("%u\n", i));
-	printf("%d\n", printf("%u\n", i));
-	return 0;
 }

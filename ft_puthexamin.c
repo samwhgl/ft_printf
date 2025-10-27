@@ -6,13 +6,13 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 16:28:30 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 16:38:32 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/27 17:10:37 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_puthexamin(int a)
+int	ft_puthexamin(unsigned int a)
 {
 	char	*base;
 	int		count;
