@@ -6,7 +6,7 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 15:49:09 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 16:20:51 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:27:17 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_putunsignednbr(unsigned int n)
 {
-	char	nbr;
-	int		count;
+	char		nbr;
+	int			count;
 	long int	nb;
 
 	count = 0;

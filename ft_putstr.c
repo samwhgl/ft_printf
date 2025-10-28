@@ -6,7 +6,7 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 12:11:06 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 12:13:03 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:24:59 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_putstr_fd(char *s, int fd)
 {
 	size_t	i;
-	int	count;
+	int		count;
 
 	i = 0;
 	count = 0;
@@ -27,4 +27,3 @@ int	ft_putstr_fd(char *s, int fd)
 	}
 	return (count);
 }
-

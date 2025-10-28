@@ -6,91 +6,65 @@
 /*   By: shaegels <shaegels@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 10:43:00 by shaegels          #+#    #+#             */
-/*   Updated: 2025/10/27 18:31:45 by shaegels         ###   ########.fr       */
+/*   Updated: 2025/10/28 09:42:44 by shaegels         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int	ft_printf(const char * format, ...)
+static int	ft_print_str(char *str)
 {
-	int	count;
-	int	i;
-	va_list	args;
-	char	*str;
+	if (!str)
+		return (write(1, "(null)", 6));
+	return (ft_putstr_fd(str, 1));
+}
 
+static int	handle_format(char c, va_list args)
+{
+	if (c == 'c')
+	{
+		ft_putchar_fd(va_arg(args, int), 1);
+		return (1);
+	}
+	else if (c == 's')
+		return (ft_print_str(va_arg(args, char *)));
+	else if (c == 'p')
+		return (ft_print_memory2(va_arg(args, void *)));
+	else if (c == 'd' || c == 'i')
+		return (ft_putnbr(va_arg(args, int)));
+	else if (c == 'u')
+		return (ft_putunsignednbr(va_arg(args, unsigned int)));
+	else if (c == 'x')
+		return (ft_puthexamin(va_arg(args, int)));
+	else if (c == 'X')
+		return (ft_puthexamaj(va_arg(args, int)));
+	else if (c == '%')
+		return (write(1, "%", 1));
+	return (0);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	int		count;
+	int		i;
+	va_list	args;
+
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	count = 0;
 	i = 0;
-	if (!format)
-		return (-1);
 	while (format[i])
 	{
-		if (format[i] != '%')
-		{
-			ft_putchar_fd(format[i], 1);
-			count ++;
-		}
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
-			{
-				ft_putchar_fd(va_arg(args, int), 1);
-				i++;
-				count ++;
-			}
-			else if (format[i + 1] == 's')
-			{
-				str = va_arg(args, char *);
-				if (!str)
-				{
-					write(1, "(null)", 6);
-					count += 6;
-				}
-				count += ft_putstr_fd(str, 1);
-				i++;
-			}
-			else if (format[i + 1] == 'p')
-			{
-				count += ft_print_memory2(va_arg(args, void *));
-				i++;
-			}
-			else if (format[i + 1] == 'd' || format[i + 1] == 'i')
-			{
-				count += ft_putnbr(va_arg(args, int));
-				i++;
-			}
-			else if (format[i + 1] == 'u')
-			{
-				count += ft_putunsignednbr(va_arg(args, unsigned int));
-				i++;
-			}
-			else if (format[i + 1] == 'x')
-			{
-				count += ft_puthexamin(va_arg(args, int));
-				i++;
-			}
-			else if (format[i + 1] == 'X')
-			{
-				count += ft_puthexamaj(va_arg(args, int));
-				i++;
-			}
-			else if (format[i + 1] == '%')
-			{
-				ft_putchar_fd('%', 1);
-				count ++;
-				i++;
-			}
+			count += handle_format(format[i + 1], args);
+			i++;
 		}
+		else
+			count += write(1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
 	return (count);
-}
-
-#include <stdio.h>
-int main(){
-	ft_printf("%d\n",ft_printf("%:\n", "hello"));
-	printf("%d\n",printf("%:\n", "hello"));
-	return 0;
 }
